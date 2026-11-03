@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   
+
+    <div class="card">
+
+         <div id="hearts-bg"></div>
+        <!-- SCREEN 1: First Page -->
+        <div id="screen-1" class="screen">
+            <div class="image-container">
+                <img src="1.gif" alt="Bears Hug">
+            </div>
+            <h2>Hey Love ❤️</h2>
+            <p>I made something special for you...</p>
+            <button type="button" class="btn" onclick="nextScreen()">Open Your Surprise 🎁</button>
+        </div>
+
+        <!-- SCREEN 2: Ready For It Page -->
+        <div id="screen-2" class="screen hidden">
+            <div class="image-container">
+                <img src="3.gif" alt="Cute Panda Bouquet">
+            </div>
+            <h2 class="title-red">Ready for it? 🥺</h2>
+            <p>Are you ready to see your surprise?</p>
+            
+            <div class="btn-group">
+                <button type="button" class="btn-yes" onclick="startCountdown()">Yes 💖✨</button>
+                <button type="button" class="btn-no" onclick="noscreen()">No</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: Not an Option Page -->
+        <div id="screen-3" class="screen hidden">
+            <div class="image-container">
+                <img src="3.gif" alt="Panda Angry">
+            </div>
+            <h2>Not an Option! 😠</h2>
+            <p>There's no "No" when it comes to loving me 😌</p>
+            <button type="button" class="btn" onclick="startCountdown()">Okay Fine, Yes 💖</button>
+        </div>
+
+        <!-- SCREEN 4: Countdown Screen -->
+        <div id="screen-countdown" class="screen hidden">
+            <div class="image-container">
+                <img src="4.gif" alt="Excited Bear">
+            </div>
+            <h2 id="countdown-title">Get ready...</h2>
+            <h1 id="countdown-number">3</h1>
+        </div>
+
+        <!-- SCREEN 5: Word Animation Screen -->
+        <div id="screen-word-animation" class="screen hidden">
+            <div class="image-container">
+                <img src="5.gif" alt="Cute Cat with Cake">
+            </div>
+            <h1 id="animated-text" class="pop-text">HAPPY</h1>
+        </div>
+
+        <!-- SCREEN 6: Final Next Screen -->
+        <div id="screen-next" class="screen hidden">
+            <div class="image-container">
+                <img src="5.gif" alt="Final Celebration">
+            </div>
+            <h2>Happy Birthday, My Love! 🎉</h2>
+            <p>You make my life brighter every single day ✨</p>
+            <button type="button" class="btn" onclick="puzzlescreen()">Next</button>
+        </div>
+
+        <!-- SCREEN: Puzzle / Extra Greeting -->
+        <div id="puzzle-screen" class="screen hidden">
+            <div class="image-box">
+                <img src="6.png" alt="again happy birthday">
+            </div>
+            <h2> Again Happy Birthday with so Much LOVE</h2>
+            <br>
+            <button type="button" class="btn" onclick="initScratchCard()">Continue ➔</button>
+        </div>
+
+        <!-- SCREEN 7: Scratch Card Screen -->
+        <div id="screen-scratch" class="screen hidden">
+            <h2>🎟️ Scratch to Reveal</h2>
+            <p>Use your finger/mouse to scratch the card below</p>
+
+            <div class="scratch-container">
+                <div class="secret-message">
+                    You are the best thing that has happened to me this year 💗
+                </div>
+                <canvas id="scratch-canvas" width="300" height="180"></canvas>
+            </div>
+
+            <button type="button" id="scratch-next-btn" class="btn hidden" onclick="showMemoriesScreen()">Continue ➔</button>
+        </div>
+
+        <!-- SCREEN: Our Memories Flip Cards -->
+        <div id="screen-memories" class="screen hidden">
+            <h2>📸 Our Memories</h2>
+            <p>tap a card to flip it</p>
+            
+            <div class="memories-grid">
+                <!-- Card 1 -->
+                <div class="memory-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="memory1.jpg" alt="Memory 1">
+                        </div>
+                        <div class="card-back">
+                            <p>Pehli date jab hum mile thay! ❤️</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="memory-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="memory2.jpg" alt="Memory 2">
+                        </div>
+                        <div class="card-back">
+                            <p>Hamari sab se pyari trip! ✨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="memory-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="memory3.jpg" alt="Memory 3">
+                        </div>
+                        <div class="card-back">
+                            <p>Tumhari yeh smile meri fav hai! 🥰</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="memory-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="memory4.jpg" alt="Memory 4">
+                        </div>
+                        <div class="card-back">
+                            <p>Hamesha aise hi sath rehna! 💖</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button type="button" class="btn" onclick="nextScreenFromMemories()">Continue ➔</button>
+        </div>
+
+        <!-- SCREEN: Wrapped Summary -->
+        <div id="year-card" class="screen hidden">
+            <h2>Our Year, Wrapped ✨</h2>
+            <div class="texts"> 
+                <p>💬 Texts send to each other</p>
+                <h3>NO Count</h3>
+            </div>
+            <div class="texts">
+                <p>😂 Memes Shared</p>
+                <h3>Unlimited</h3>
+            </div>
+            <div class="texts">
+                <p>📞 Calls that lasted 2AM</p>
+                <h3>Too Much</h3>
+            </div>
+            <div class="texts">
+                <p>🥰 Times I thought of u</p>
+                <h3>Infinity</h3>
+            </div>
+            <div class="texts">
+                <p>📍 Places we went together</p>
+                <h3>Uncountable</h3>
+            </div>
+            <br>
+            <button type="button" class="btn" onclick="showBalloonScreen()">Continue ➔</button>
+        </div>
+
+        <!-- SCREEN: Pop a Balloon -->
+        <div id="screen-balloons" class="screen hidden">
+            <h2>🎈 Pop a Balloon</h2>
+            <p>tap the balloons for a little message</p>
+
+            <div id="balloon-container" class="balloon-box">
+                <div id="pop-message-box" class="message-popup hidden">
+                    <span id="pop-message-text">You're my favorite person 💗</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn" onclick="showEnvelopeScreen()">Continue ➔</button>
+        </div>
+
+        <!-- SCREEN: Envelope Letter Screen -->
+        <div id="screen-envelope" class="screen hidden">
+            <h2>💌 A Special Letter For You</h2>
+            <p>Tap the envelope to open your letter</p>
+
+            <div class="envelope-wrapper" id="envelope-wrapper" onclick="openEnvelope()">
+                <div class="envelope">
+                    <div class="flap"></div>
+                    <div class="pocket"></div>
+                    <div class="letter" id="letter">
+                        <div class="letter-content">
+                            <span id="letter-text"></span><span id="cursor" class="typing-cursor">|</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="envelope-next-btn" class="btn hidden" onclick="showWishScreen()">Final Surprise ➔</button>
+        </div>
+
+        <!-- SCREEN: Make a Wish & Cut Cake -->
+        <div id="screen-wish" class="screen hidden">
+            <h2>🎂 Make a Wish</h2>
+            <p>tap each candle to blow it out</p>
+
+            <div class="candles-container">
+                <div class="candle-item" id="candle-1" onclick="blowCandle(1)">🕯️</div>
+                <div class="candle-item" id="candle-2" onclick="blowCandle(2)">🕯️</div>
+                <div class="candle-item" id="candle-3" onclick="blowCandle(3)">🕯️</div>
+            </div>
+
+            <div class="cake-box">
+                <img src="7.png" alt="Birthday Cake">
+            </div>
+
+            <p id="wish-status-text" class="wish-text">Close your eyes and make a wish 🤍</p>
+
+            <button type="button" id="cut-cake-btn" class="btn hidden" onclick="cutTheCakeAction()">Cut the Cake 🔪</button>
+        </div>
+
+        <div id="slice-screen" class="screen hidden">
+             <h2>🎂 Make a Wish</h2>
+             <div class="candles-container">
+                <div class="candle-item" id="candle-1" onclick="blowCandle(1)">💨</div>
+                <div class="candle-item" id="candle-2" onclick="blowCandle(2)">💨</div>
+                <div class="candle-item" id="candle-3" onclick="blowCandle(3)">💨</div>
+             </div>
+             <div class="cake-box">
+        <img src="8.gif" alt="Birthday Cake Slice">
+    </div>
+
+    <!-- Wish message status -->
+    <p id="wish-status-text" class="wish-text">Sweetest slice for the sweetest person 🥰</p>
+
+    <!-- Cut the Cake Button -->
+    <button type="button" class="btn" onclick="lastscreen()">See Final Surprise →</button>
+        </div>
+
+        <div id="screen-last" class="screen hidden">
+            <div class="image-container">
+                <img src="9.gif" alt="Bears love you">
+            </div>
+            <h2>Happy Birthday 🎂,<br> My Love ❤️</h2>
+            <p>Everyday with you feels more special.
+                <br>Today, more than any other day, is a celbration of you.
+                <br>I love you so much 💖💕
+            </p>
+            <p class="signature">-made with love , just for you</p>
+        </div>
+
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
